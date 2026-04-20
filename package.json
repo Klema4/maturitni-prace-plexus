@@ -37,8 +37,8 @@
     "next": "16.2.2",
     "next-sitemap": "^4.2.3",
     "next-swagger-doc": "^0.4.1",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
     "reading-time": "^1.5.0",
     "rss": "^1.2.2",
     "zod": "^4.3.6"
@@ -58,5 +58,12 @@
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
-  "packageManager": "pnpm@10.15.1+sha512.34e538c329b5553014ca8e8f4535997f96180a1d0f614339357449935350d924e22f8614682191264ec33d1462ac21561aff97f6bb18065351c162c7e8f6de67"
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "react": "^18.0.0 || ^19.0.0",
+        "react-dom": "^18.0.0 || ^19.0.0"
+      }
+    }
+  }
 }
