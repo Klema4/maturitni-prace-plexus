@@ -38,6 +38,7 @@ export interface ButtonProps extends Omit<
   onClick?: () => void;
   className?: string;
   disabled?: boolean;
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
 }
 
 export default function Button({
@@ -49,12 +50,13 @@ export default function Button({
   onClick,
   className,
   disabled,
+  type,
 }: ButtonProps) {
   const buttonClasses = clsx(buttonVariants({ variant }), className);
 
   if (onClick) {
     return (
-      <button onClick={onClick} className={buttonClasses} disabled={disabled}>
+      <button onClick={onClick} className={buttonClasses} disabled={disabled} type={type ?? "button"}>
         {UseIcon && <UseIcon size={16} />}
         {iconNode && <Icon iconNode={iconNode} size={16} />}
         {children}
@@ -64,7 +66,7 @@ export default function Button({
 
   if (!href) {
     return (
-      <button className={buttonClasses} disabled={disabled} type="button">
+      <button className={buttonClasses} disabled={disabled} type={type ?? "button"}>
         {UseIcon && <UseIcon size={16} />}
         {iconNode && <Icon iconNode={iconNode} size={16} />}
         {children}

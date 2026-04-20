@@ -14,7 +14,7 @@ export interface FooterLinksGroup {
 
 interface FooterClientProps {
   sectionLinks?: FooterLink[];
-  brandName: string;
+  brandName?: string;
 }
 
 const EMPTY_SECTION_LINKS: FooterLink[] = [];
@@ -26,7 +26,7 @@ const EMPTY_SECTION_LINKS: FooterLink[] = [];
  */
 export default function FooterClient({
   sectionLinks = EMPTY_SECTION_LINKS,
-  brandName,
+  brandName = 'Plexus',
 }: FooterClientProps) {
   const year = new Date().getFullYear();
   const staticLinks: FooterLinksGroup = {

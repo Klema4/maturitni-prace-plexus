@@ -27,7 +27,7 @@ export default function AccountShell({
     <>
       <NavbarClient navLinks={navLinks} brandName={brandName} viewer={viewer} />
       {children}
-      <FooterClient sectionLinks={sectionLinks} />
+      <FooterClient sectionLinks={sectionLinks} brandName={brandName} />
     </>
   );
 }

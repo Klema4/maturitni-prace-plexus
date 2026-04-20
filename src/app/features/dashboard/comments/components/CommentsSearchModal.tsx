@@ -78,7 +78,6 @@ export function CommentsSearchModal({
               Zavřít
             </Button>
             <Button
-              href="#"
               variant="primary"
               type="submit"
               className="cursor-pointer tracking-tight"
