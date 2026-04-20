@@ -3,6 +3,8 @@ import Footer from "@/app/components/blog/Footer";
 import Loading from "@/app/(main)/loading";
 import { Suspense } from "react";
 
+export const dynamic = "force-dynamic";
+
 export default function MainLayout({
   children,
 }: Readonly<{

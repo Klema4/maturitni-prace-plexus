@@ -1,6 +1,8 @@
 import DashboardAccessGate from "@/app/features/dashboard/core/DashboardAccessGate";
 import DashboardShell from "@/app/features/dashboard/core/DashboardShell";
 
+export const dynamic = "force-dynamic";
+
 /**
  * DashboardLayout
  * Server layout pro chráněné části dashboardu.

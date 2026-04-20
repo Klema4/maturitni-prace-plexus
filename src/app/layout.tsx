@@ -3,6 +3,8 @@ import "./globals.css";
 import { geistSans, geistMono, newsreader } from "@/lib/fonts";
 import { getDashboardSettingsService } from "@/lib/services/dashboardSettingsService";
 
+export const dynamic = "force-dynamic";
+
 /**
  * generateMetadata
  * Načte veřejné SEO nastavení z databáze a použije ho jako základ pro title/description/OG.
