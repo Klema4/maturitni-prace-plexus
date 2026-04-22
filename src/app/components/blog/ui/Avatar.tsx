@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { User } from 'lucide-react';
 import { clsx } from 'clsx';
 import { cva, type VariantProps } from 'cva';
+import { getSafeImageInfo } from '@/lib/utils/image';
 
 /**
  * Univerzální Avatar komponenta pro zobrazení uživatelského avataru.
@@ -60,15 +61,17 @@ export function Avatar({
   ...rest
 }: AvatarProps) {
   const px = SIZE_TO_PX[size ?? 'md'];
+  const { src: safeSrc, isProfileImage } = getSafeImageInfo(src);
 
   return (
     <span className={clsx(avatarVariants({ size, variant }), className)} {...rest}>
-      {src ? (
+      {safeSrc ? (
         <Image
-          src={src}
+          src={safeSrc}
           alt={alt}
           width={px}
           height={px}
+          unoptimized={isProfileImage}
           className="object-cover w-full h-full"
         />
       ) : (

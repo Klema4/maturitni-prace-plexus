@@ -38,6 +38,18 @@ const nextConfig: NextConfig = {
         hostname: "maturita-cdn.adam-klement.cz",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "maturita-cdn.adam-klement.cz",
+        port: "9007",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "maturita-cdn.adam-klement.cz",
+        port: "9007",
+        pathname: "/**",
+      },
     ],
   },
 };

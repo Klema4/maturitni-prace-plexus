@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth";
 import { getUserById } from "@/lib/repositories/userRepository";
 import { getNavSections } from '@/lib/repositories/sectionsRepository';
 import { getDashboardSettingsService } from "@/lib/services/dashboardSettingsService";
+import { getSafeImageSrc } from "@/lib/utils/image";
 
 /**
  * Serverový obal navigace.
@@ -34,7 +35,7 @@ export default async function Navbar() {
         id: user.id,
         name: user.name || "Uživatel",
         surname: user.surname || "",
-        image: user.image || null,
+        image: getSafeImageSrc(user.image),
       };
     }
 
@@ -42,7 +43,7 @@ export default async function Navbar() {
       id: userId,
       name: session?.user?.name || "Uživatel",
       surname: "",
-      image: session?.user?.image || null,
+      image: getSafeImageSrc(session?.user?.image || null),
     };
   })();
 

@@ -4,9 +4,10 @@ import { db } from "@/lib/db";
 import { users } from "@/lib/schema";
 import { eq, and, isNull } from "drizzle-orm";
 import { z } from "zod";
+import { getSafeImageSrc } from "@/lib/utils/image";
 
 const UpdateImageSchema = z.object({
-  imageUrl: z.string().url("Neplatná URL obrázku"),
+  imageUrl: z.string().min(1, "Chybí URL obrázku"),
 });
 
 /**
@@ -34,10 +35,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const normalizedImageUrl = getSafeImageSrc(validatedData.data.imageUrl);
+    if (!normalizedImageUrl) {
+      return NextResponse.json(
+        { error: "Neplatný nebo nepodporovaný formát URL obrázku" },
+        { status: 400 }
+      );
+    }
+
     await db
       .update(users)
       .set({
-        image: validatedData.data.imageUrl,
+        image: normalizedImageUrl,
         updatedAt: new Date(),
       })
       .where(

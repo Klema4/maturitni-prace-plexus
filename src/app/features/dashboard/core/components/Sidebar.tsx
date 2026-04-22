@@ -18,6 +18,7 @@ import { getSidebarProfileData } from "@/app/features/dashboard/core/api/sidebar
 import { signOut } from "@/app/features/blog/auth/api/auth.api";
 import { ArrowUpRight, BookMarked, LogOut, Menu, UserCog } from "lucide-react";
 import { dashboardPages } from "@/app/features/dashboard/core/dashboardNavigation";
+import { getSafeImageInfo } from "@/lib/utils/image";
 
 /**
  * Kontext pro stav sidebaru v dashboardu.
@@ -207,6 +208,10 @@ function SidebarHeader() {
         return `${first}${second}`.toUpperCase() || "U";
     }, [profile]);
 
+  const profileImageInfo = profile?.image
+    ? getSafeImageInfo(profile.image)
+    : { src: null, isProfileImage: false };
+
     const used = Math.max(0, usedStorageBytes);
     const quotaLimitBytes =
         typeof profile?.maxStorageBytes === "number"
@@ -253,13 +258,20 @@ function SidebarHeader() {
                 className="cursor-pointer py-1.5 px-2.5 flex items-center gap-2.5 bg-zinc-900/75 rounded-lg mb-4 hover:bg-zinc-900 transition-colors"
             >
                 {profile?.image ? (
+                  profileImageInfo.src ? (
                     <Image
-                        src={profile.image}
+                        src={profileImageInfo.src}
                         alt={fullName}
                         width={32}
                         height={32}
+                        unoptimized={profileImageInfo.isProfileImage}
                         className="w-8 h-8 rounded-full object-cover"
                     />
+                  ) : (
+                    <div className="w-8 h-8 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-xs font-semibold text-zinc-300">
+                      {initials}
+                    </div>
+                  )
                 ) : (
                     <div className="w-8 h-8 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-xs font-semibold text-zinc-300">
                         {initials}

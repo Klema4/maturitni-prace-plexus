@@ -4,6 +4,7 @@ import { getDashboardSettingsService } from "@/lib/services/dashboardSettingsSer
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { getUserById } from "@/lib/repositories/userRepository";
+import { getSafeImageSrc } from "@/lib/utils/image";
 
 /**
  * Layout pro (account) skupinu rout.
@@ -36,7 +37,7 @@ export default async function AccountGroupLayout({
         id: user.id,
         name: user.name || "Uživatel",
         surname: user.surname || "",
-        image: user.image || null,
+        image: getSafeImageSrc(user.image),
       };
     }
 
@@ -44,7 +45,7 @@ export default async function AccountGroupLayout({
       id: userId,
       name: session?.user?.name || "Uživatel",
       surname: "",
-      image: session?.user?.image || null,
+      image: getSafeImageSrc(session?.user?.image || null),
     };
   })();
 
